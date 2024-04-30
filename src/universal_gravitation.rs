@@ -3,7 +3,7 @@ pub mod gravitation {
     use crate::body::Body;
 
     // G = 6,67408.10-11 N.m²/kg²
-    const G: f32 = 6_67408.10;
+    const G: f32 = 6_67408.10 * 0.0000001;
 
     fn calculate_gravitation_force(body1: &Body, body2: &Body, d: f32) -> f32 {
         // |F| = (G * M * m) / d²
