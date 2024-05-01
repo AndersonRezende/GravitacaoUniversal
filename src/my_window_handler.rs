@@ -27,9 +27,13 @@ impl MyWindowHandler {
                         _ => {}
                     }
 
-                    let direction: f32 = angle_between_two_points(bodies[i].x, bodies[i].y, bodies[j].x, bodies[j].y);
-                    bodies[i].x_speed += (direction * PI / 180.0).cos() * ab1;
-                    bodies[i].y_speed += (direction * PI / 180.0).sin() * ab1;
+                    let direction1: f32 = angle_between_two_points(bodies[i].x, bodies[i].y, bodies[j].x, bodies[j].y);
+                    let direction2: f32 = angle_between_two_points(bodies[j].x, bodies[j].y, bodies[i].x, bodies[i].y);
+                    bodies[i].x_speed += (direction1 * PI / 180.0).cos() * ab1;
+                    bodies[i].y_speed += (direction1 * PI / 180.0).sin() * ab1;
+
+                    bodies[j].x_speed += (direction2 * PI / 180.0).cos() * ab2;
+                    bodies[j].y_speed += (direction2 * PI / 180.0).sin() * ab2;
                 }
             }
         }
