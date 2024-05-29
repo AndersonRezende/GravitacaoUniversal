@@ -7,7 +7,7 @@ pub mod gravitation {
 
     fn calculate_gravitation_force(body1: &Body, body2: &Body, d: f32) -> f32 {
         // |F| = (G * M * m) / d²
-        let f = G * body1.m * body2.m / d.powf(2.0);
+        let f = G * (body1.m * body2.m / d.powf(2.0));
         f.abs()
     }
 

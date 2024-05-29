@@ -1,9 +1,11 @@
 use std::f32::consts::PI;
 use speedy2d::color::Color;
-use speedy2d::window::{WindowHandler, WindowHelper};
+use speedy2d::dimen::{UVec2, Vec2, Vector2};
+use speedy2d::window::{WindowHandler, WindowHelper, WindowStartupInfo};
 use speedy2d::Graphics2D;
+use speedy2d::shape::Rectangle;
 use crate::body::Body;
-use crate::cartesian_utils::cartesian::angle_between_two_points;
+use crate::cartesian_utils::cartesian::{angle_between_two_points, distance};
 use crate::universal_gravitation::gravitation::calculate_gravitation;
 
 pub struct MyWindowHandler {
@@ -21,8 +23,9 @@ impl MyWindowHandler {
 
                     match (bodies.get(i), bodies.get(j)) {
                         (Some(b1), Some(b2)) => {
-                            ab1 = calculate_gravitation(&b1, &b2, 10.0);
-                            ab2 = calculate_gravitation(&b2, &b1, 10.0);
+                            let distance = distance(b1.x, b2.x, b1.y, b2.y);
+                            ab1 = calculate_gravitation(&b1, &b2, distance);
+                            ab2 = calculate_gravitation(&b2, &b1, distance);
                         }
                         _ => {}
                     }
